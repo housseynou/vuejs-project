@@ -3,6 +3,7 @@
     
     <HelloWorld msg="THE WORLD WEATHER"/>
   </div>
+  
 </template>
 
 <script>

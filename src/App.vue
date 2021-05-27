@@ -2,7 +2,10 @@
   <div id="nav">
     <main>
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">The World Weather</router-link>
+      <div class="search-box">
+        <input type="text" class="search" placeholder="Search...">
+      </div>
     </main>
   </div>
   <router-view/>
@@ -29,6 +32,7 @@ main {
   min-height: 100vh;
 }
 #nav {
+  font-size:20px;
   padding: 30px;
 
   a {
@@ -36,8 +40,19 @@ main {
     color: #2c3e50;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: #0af189;
     }
   }
 }
+
+.search {
+  margin-top: 20px;
+  width: 200px;
+  height: 40px;
+  padding-left: 10px;
+  border-radius: 20px;
+  background-color: rgba(255,255,255, 0.2);
+  font-size: 18px;
+}
+
 </style>
