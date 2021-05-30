@@ -1,19 +1,27 @@
 <template>
   <div class="home">
     
-    <HelloWorld msg="THE WORLD WEATHER"/>
+    <div class="search-box">
+         <input type="text" class="search" placeholder="Search...">
+    </div>
+
+    <h3>this is the home page</h3>
+    
+  
   </div>
   
+    
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    
   }
 }
+
+
 </script>

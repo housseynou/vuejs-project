@@ -2,14 +2,24 @@
   <div id="nav">
     <main>
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">The World Weather</router-link>
-      <div class="search-box">
-        <input type="text" class="search" placeholder="Search...">
-      </div>
+      <router-link to="/world">The World Weather</router-link>
+      
     </main>
   </div>
   <router-view/>
 </template>
+
+<script>
+  export default {
+    name: 'app',
+    data () {
+      return {
+        api_key: '5f6d9a7aaf8cdc5ba06730784abacfb1'
+      }
+    }
+  }
+</script>
+
 
 <style lang="scss">
 * {
