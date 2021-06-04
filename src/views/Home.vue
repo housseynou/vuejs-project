@@ -1,36 +1,87 @@
 <template>
   <div class="home">
     <div class="search-box">
-         <i class="fas fa-search"></i><input type="text" class="search">
+         <i class="fas fa-search"></i><input type="text" class="search" placeholder="une ville..." v-model="query" @keypress="weatherData">
     </div>
-    <HelloWorld msg="Météo Du Monde"/>
+    <!--<HelloWorld msg="Météo Du Monde"/> -->
+    <h1>Météo Du Monde</h1>
     <div class="info">Utilisez la barre de recherche pour connaitre <br> le temps qu'il fait dans votre ville</div>
-    <div class="date">Lundi 01/06/2021</div>
-    <div class="ville">Bruxelles, Belgium</div>
-    <div class="meteo">
-      <div class="temperature">24°c</div>
-      <div class="temps">Soleil</div>
+    <div v-if="typeof weather.main != 'undefined'">
+      <div class="date">{{ dateTime() }}</div>
+      <div class="ville">{{ weather.name }}, {{ weather.sys.country }}</div>
+      <div class="meteo">
+        <div class="temperature"> {{ Math.round(weather.main.temp)}}°c</div>
+        <div class="temps">{{ weather.weather[0].description }}</div>
+      </div>
     </div>
-    
-    
-    
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+<!--import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
   components: {
     HelloWorld
   }
+  
+} -->
+
+<script>
+// @ is an alias to /src
+
+export default {
+  name: 'app',
+  data () {
+    return {
+      api_key: 'bfd8a171586a6251815db6513dd063cd',
+      url: 'https://api.openweathermap.org/data/2.5/',
+      query: '',
+      weather: {},
+      lang: 'fr',
+      units: 'metric'
+    }
+  },
+  methods: {
+      weatherData(e) {
+      if (e.key == 'Enter'){
+        console.log(this.url);
+        fetch(this.url+'weather?q='+this.query+'&units=metric'+'&APPID='+this.api_key+'&lang='+this.lang)
+          .then(datas => {
+            return datas.json();
+        }).then(this.setResults);
+        console.log(this.setResults);
+      }
+    },
+    setResults(results){
+      this.weather = results;
+    }, 
+    dateTime(){
+                  
+
+            
+
+            //var currentDateWithFormat = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+
+      let d = new Date();
+      let y = new Intl.DateTimeFormat('fr', { year: 'numeric' }).format(d);
+      let m = new Intl.DateTimeFormat('fr', { month: 'short' }).format(d);
+      let da = new Intl.DateTimeFormat('fr', { day: '2-digit' }).format(d);
+      return `${da}-${m}-${y}`;   
+
+      //const today = new Date();
+      //const date = (today.getDate()+today.getMonth()+today.getFullYear()).toJSON().slice(0,10).replace(/-/g,'/');
+      //const time = today.getHours()+':'+today.getMinutes()+':'+today.getSeconds();
+      //const datetime = date+' '+time;
+      //return datetime;
+      //return currentDateWithFormat;
+    }
+  }
 }
 </script>
 
 <style>
-  .hello {
+  h1 {
     width: 320px;
     margin: 20px auto;
     align-self: center;
@@ -72,6 +123,7 @@ export default {
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 20px;
     box-shadow: 3px 6px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 4px 4px 6px #777;*/
   }
   .temperature {
     font-size: 95px;
@@ -90,7 +142,7 @@ export default {
     float: right;
     height: 30px;
     width: 160px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
     display: flex;
     align-items: center;
     border-radius: 20px;
