@@ -9,9 +9,10 @@
     <div v-if="typeof weather.main != 'undefined'">
       <div class="date">{{ dateTime() }}</div>
       <div class="ville">{{ weather.name }}, {{ weather.sys.country }}</div>
+    <!--  <div class="ville" v-else>{{ weather.name }}, {{ weather.sys.country }}</div> -->
       <div class="meteo">
         <div class="temperature"> {{ Math.round(weather.main.temp)}}°c</div>
-        <div class="temps">{{ weather.weather[0].description }}</div>
+        <p class="temps">{{ weather.weather[0].description }}</p>
       </div>
     </div>
   </div>
@@ -39,10 +40,19 @@ export default {
       query: '',
       weather: {},
       lang: 'fr',
-      units: 'metric'
+      units: 'metric',
+      A: true,
+      B: 'Brussels'
     }
   },
   methods: {
+      //async function weatherData() {
+      //  const resp = await fetch(this.url+'weather?q='+this.query+'&units=metric'+'&APPID='+this.api_key+'&lang='+this.lang);
+       // const dat = await resp.json();
+       // console.log(dat);
+      //}
+      //weatherData();
+
       weatherData(e) {
       if (e.key == 'Enter'){
         console.log(this.url);
@@ -57,9 +67,7 @@ export default {
       this.weather = results;
     }, 
     dateTime(){
-                  
-
-            
+    
 
             //var currentDateWithFormat = new Date().toJSON().slice(0,10).replace(/-/g,'/');
 
@@ -77,6 +85,7 @@ export default {
       //return currentDateWithFormat;
     }
   }
+
 }
 </script>
 
@@ -129,11 +138,14 @@ export default {
     font-size: 95px;
     font-weight: 800;
     color: whitesmoke;
+    font-family: Georgia, 'Times New Roman', Times, serif;
   }
   .temps {
     font-size: 30px;
     font-weight: 700;
     color: rgb(200, 252, 247);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 2rem;
   }
   .search-box {
     position: relative;
@@ -161,6 +173,34 @@ export default {
   padding-left: 10px;
 
 }
+@media only screen and (max-width: 950px) {
+  .search-box {
+    right: 50px;
+  }
+}
+@media only screen and (max-width: 840px) {
+  .search-box {
+    right: 30px;
+  }
+}
+@media only screen and (max-width: 770px) {
+  .search-box {
+    right: 10px;
+  }
+}
+@media only screen and (max-width: 560px) {
+  .search-box {
+    right: 5px;
+    width: 130px;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .search-box {
+    right: 2px;
+    width: 120px;
+  }
+}
+
   /*.search {
   height: 20px;
   width: 200px;

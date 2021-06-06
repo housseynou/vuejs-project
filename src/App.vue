@@ -1,5 +1,5 @@
 <template>
-  <img id="logow" alt="Vue logo" src="./assets/wwwLogo.png">
+  <img id="logow" alt="Vue logo" src="./assets/logo.png">
   <div id="nav">
     <router-link to="/">Home</router-link> |
     <router-link to="/world">World</router-link>
@@ -15,8 +15,10 @@
 }
 #logow {
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 10px;
+  top: 10px;
+  height: 70px;
+  width: 120px;
 }
 #app {
   min-height: 100vh;

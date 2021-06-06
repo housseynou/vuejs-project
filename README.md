@@ -1,5 +1,5 @@
-# vuejs-project
-
+# WWWEATHER
+  wwweather is an app created with Vue JS framework. It is based on Openweathermap API that helps us to know the weather around the world.
 ## Project setup
 ```
 npm install
@@ -20,5 +20,6 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Preview
+![Home Page](src/assets/wwweather.png)
+[See it online](https://cli.vuejs.org/config/).
