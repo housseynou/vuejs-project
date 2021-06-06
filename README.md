@@ -22,4 +22,4 @@ npm run lint
 
 ### Preview
 ![Home Page](src/assets/wwweather.png)
-[See it online](https://housseynou.github.io/vuejs-project/).
+[See it online](https://housseynou.github.io/vuejs-project/.)
